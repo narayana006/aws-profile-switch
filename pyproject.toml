@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aws-profile-switch"
+version = "0.1.0"
+description = "Switch AWS profiles from the terminal with fuzzy search, recent-first ordering and SSO login only when needed."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Narayana Vemburaj" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+awsp = "aws_profile_switch.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/narayana006/aws-profile-switch"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
