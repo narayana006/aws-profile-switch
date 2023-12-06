@@ -1,0 +1,39 @@
+# A made-up AWS config for trying awsp without touching your own.
+#   export AWS_CONFIG_FILE=$PWD/examples/config
+#   export AWS_SHARED_CREDENTIALS_FILE=$PWD/examples/credentials
+
+[default]
+region = us-east-1
+
+[profile dev-admin]
+sso_session = acme
+sso_account_id = 111111111111
+sso_role_name = AdministratorAccess
+region = eu-west-1
+
+[profile staging-admin]
+sso_session = acme
+sso_account_id = 222222222222
+sso_role_name = AdministratorAccess
+
+[profile prod-readonly]
+sso_session = acme
+sso_account_id = 123456789012
+sso_role_name = ReadOnlyAccess
+
+[profile prod-admin]
+sso_session = acme
+sso_account_id = 123456789012
+sso_role_name = AdministratorAccess
+
+[profile prod-audit]
+role_arn = arn:aws:iam::123456789012:role/Audit
+source_profile = prod-readonly
+
+[profile sandbox]
+credential_process = /usr/local/bin/fetch-creds sandbox
+
+[sso-session acme]
+sso_start_url = https://acme.awsapps.com/start
+sso_region = us-east-1
+sso_registration_scopes = sso:account:access
